@@ -1,7 +1,10 @@
 
 let money,
-income,
-addExpenses,
-deposit,
-mission,
-period;
+    income,
+    addExpenses,
+    deposit,
+    mission,
+    period;
+
+alert ('Hello World');
+    
