@@ -8,5 +8,5 @@ let money,
 
 alert ('Hello World');
 
-console.log('Welcome Friend');
+console.log('Welcome my Friend');
     
