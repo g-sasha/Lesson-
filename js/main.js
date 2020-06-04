@@ -7,4 +7,6 @@ let money,
     period;
 
 alert ('Hello World');
+
+console.log('Welcome Friend');
     
