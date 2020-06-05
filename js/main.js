@@ -3,11 +3,18 @@ let money = 30000,
     addExpenses = 'Ипотека, комуналка, бензин',
     deposit = true,
     mission = 300000,
-    period = 12;     
+    period = 12;  
 
-console.log(typeof money);
+// Вывели тип значений в консоль
+console.log(typeof money); 
 console.log(typeof income);
 console.log(typeof deposit);
 
+// Вывели длинну строки в консоли 
+console.log (addExpenses.length);
+
+// Вывели в консоль фразу
+console.log('Период равен ' + period + ' месяцев');
+console.log('Цель заработать ' + mission + ' рублей');
 
 
