@@ -1,6 +1,6 @@
 let money = 30000,
     income = 'Фриланс',
-    addExpenses = 'Ипотека, комуналка, бензин',
+    addExpenses = 'Ипотека, Комуналка, Бензин',
     deposit = true,
     mission = 300000,
     period = 12;  
@@ -16,5 +16,10 @@ console.log (addExpenses.length);
 // Вывели в консоль фразу
 console.log('Период равен ' + period + ' месяцев');
 console.log('Цель заработать ' + mission + ' рублей');
+
+// Привели строку к нижнему регистру и разбили на массив
+console.log(addExpenses.toLowerCase());
+
+console.log(addExpenses.split(','));
 
 
