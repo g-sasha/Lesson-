@@ -22,4 +22,10 @@ console.log(addExpenses.toLowerCase());
 
 console.log(addExpenses.split(','));
 
+// Вычисляем дневной бюджет
+let budgetDay,
+    incomeMoney = 5000;
+budgetDay =(incomeMoney + money) /30;
+console.log(budgetDay.toFixed(2));
+
 
