@@ -10,7 +10,7 @@ nums.forEach(function(e) {number *= e;});
 console.log(number);
 
 // Возвели в степень
-console.log(number ** 2);
+console.log(number ** 3);
 
 // Оставили первые 2 числа 
 console.log(String(number ** 2).slice(0,2));
