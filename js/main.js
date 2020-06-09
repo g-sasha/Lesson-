@@ -13,5 +13,5 @@ console.log(number);
 console.log(number ** 3);
 
 // Оставили первые 2 числа 
-console.log(String(number ** 2).slice(0,2));
+console.log(String(number ** 3).slice(0,2));
 
