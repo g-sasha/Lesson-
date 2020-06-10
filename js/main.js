@@ -1,9 +1,18 @@
-let money = 30000,
-    income = 'Фриланс',
-    addExpenses = 'Ипотека, Комуналка, Бензин',
+let 
+    income = 'Фриланс',    
     deposit = true,
     mission = 300000,
     period = 12;  
+
+
+// Выводим месячный доход в выплывающее окно (number)
+let money = +prompt('Ваш месячный доход?', '35000');
+
+
+// перчечисляем расходы (string)
+let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Ипотека, кредит');
+console.log(addExpenses.split(','));
+
 
 // Вывели тип значений в консоль
 let showTypeOf = function(data){
@@ -14,14 +23,6 @@ showTypeOf (money);
 showTypeOf (income);
 showTypeOf (deposit);
 
-
-// Выводим месячный доход в выплывающее окно (number)
-money = +prompt('Ваш месячный доход?', '35000');
-console.log(money);
-
-// перчечисляем расходы (string)
-addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Ипотека, кредит');
-console.log(addExpenses.split(','));
 
 // Депозит (boolean)
 deposit  = confirm ('Есть ли у вас депозит в банке?')
