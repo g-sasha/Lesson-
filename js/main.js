@@ -1,3 +1,5 @@
+'use strict'
+
 let 
     income = 'Фриланс',    
     deposit = true,
@@ -58,13 +60,13 @@ console.log('Свободные средства: ', accumulatedMonth);
 
 
 // Вычисляем за сколько месяцев добьемся цели 
-let getTargetMonth = function (a, b){
-    console.log (+ (Math.ceil( a / b)));
+let getTargetMonth = function (mission, accumulatedMonth){
+    console.log (+(Math.ceil( mission / accumulatedMonth)));
 }
 getTargetMonth(mission, accumulatedMonth);
 
 // Бюджет на день
-budgetDay = accumulatedMonth/30;
+let budgetDay = accumulatedMonth/30;
 console.log('бюджет на день: ' + (budgetDay.toFixed(2)));
 
 // Уровень дохода
