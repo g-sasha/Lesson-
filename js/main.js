@@ -30,18 +30,7 @@ let appData = {
     expensesMonth: 0,
     
     getExpensesMonth: function (){
-        let sum = 0;
-        let quest;
-        for (let i = 0; i < 2; i++ ){
-            expenses [i] = prompt ('Введите обязательную статью расходов?');
-            do{
-                quest = prompt('Во сколько Вам это обойдется?');
-            }
-            while(!isNumber (quest));
-            sum += +quest;
-        }   
-        
-        return sum;
+      
     },
 
     getAccumulatedMonth: function (money, expensesMonth){
@@ -69,16 +58,28 @@ let appData = {
           return (' Что то пошло не так ');
          }    
      },
+
+     asking: function(){
+        let 
+            addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Ипотека, кредит');
+            appData.addExpenses = addExpenses.toLocaleLowerCase().split(',');
+            appData.deposit  = confirm ('Есть ли у вас депозит в банке?');
+
+        let expenses =[];
+        let sum = 0;
+        let quest;
+        for (let i = 0; i < 2; i++ ){
+            expenses [i] = prompt ('Введите обязательную статью расходов?');
+            do{
+                quest = prompt('Во сколько Вам это обойдется?');
+            }
+            while(!isNumber (quest));
+            sum += +quest;
+        } 
+        
+    }
 };
-
-let 
-    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'Ипотека, кредит'),
-    income = 'Фриланс',    
-    deposit = true,
-    mission = 300000,
-    period = 12;  
-
-console.log(addExpenses.split(','));
+  
 
 
 // Депозит (boolean)
