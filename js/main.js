@@ -32,9 +32,7 @@ let start = document.getElementById('start'),
     periodSelect = document.querySelector('.period-select'),
     salaryAmount = document.querySelector('.salary-amount'),
     incomeItem = document.querySelectorAll('.income-items'),
-    periodAmount = document.querySelector('.period-amount');
-    
-
+    periodAmount = document.querySelector('.period-amount'); 
 
 let appData = {
     income:{},
@@ -52,7 +50,7 @@ let appData = {
 
     
     start: function (){
-        
+        let items = document.querySelectorAll('input[type=text]');
         this.budget = +salaryAmount.value;
 
         this.getExpenses();   
@@ -66,9 +64,57 @@ let appData = {
         
         this.showResult();
 
-    },
+        start.style.display = 'none';
+        cencel.style.display = 'block';
 
-   
+        items.forEach(function(item){
+            item.disabled = true;
+
+            // через цикл for 
+        });
+        
+    },
+    reset: function(){
+        let items = document.querySelectorAll('input[type=text]');
+
+        start.style.display = 'block';
+        cencel.style.display = 'none'; 
+        btnIncome.style.display = 'block';
+        btnExpenses.style.display = 'block';
+
+        this.income = {};
+        this.incomeMonth = 0;
+        this.addIncome = [];
+        this.expenses  = {};
+        this.addExpenses = [];
+        this.deposit = false;
+        this.budget = 0;
+        this.budgetDay = 0;
+        this.budgetMonth = 0;
+        this.expensesMonth = 0;
+        this.percenDeposit = 0;
+        this.moneyDeposit = 0;
+
+        items.forEach(function(item){
+            item.disabled = false;
+            item.value = '' ;          
+        });
+        incomeItem = document.querySelectorAll('.income-items');
+        
+        expensesItem = document.querySelectorAll ('.expenses-items');
+        
+        for( let i = 0; i < incomeItem.length; i++ ){
+            if(i > 0){
+                incomeItem[i].parentNode.removeChild(incomeItem[i]);
+            }
+        };
+
+        for( let i = 0; i < expensesItem.length; i++ ){
+            if(i > 0){
+                expensesItem[i].parentNode.removeChild(expensesItem[i]);
+            }
+        };
+    },
 
     showResult: function(){
         budgetMonthValue.value = appData.budgetMonth;
@@ -197,6 +243,15 @@ let appData = {
     },
     
 };
+
+
+
+
+
+let cencel = document.getElementById('cancel')
+
+
+cencel.addEventListener('click', appData.reset.bind(appData));
 
 start.disabled = true;
 salaryAmount.addEventListener('input', () => {
