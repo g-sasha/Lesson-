@@ -35,6 +35,7 @@ let start = document.getElementById('start'),
     periodAmount = document.querySelector('.period-amount');
     
 
+
 let appData = {
     income:{},
     incomeMonth: 0,
@@ -49,22 +50,25 @@ let appData = {
     percenDeposit: 0,
     moneyDeposit: 0,
 
+    
     start: function (){
         
-        appData.budget = +salaryAmount.value;
+        this.budget = +salaryAmount.value;
 
-        appData.getExpenses();   
-        appData.getIncome();
-        appData.getExpensesMonth();           
-        appData.getAddExpenses();
-        appData.getAddIncome();
-        appData.getBudget();
-        appData.range();
+        this.getExpenses();   
+        this.getIncome();
+        this.getExpensesMonth();           
+        this.getAddExpenses();
+        this.getAddIncome();
+        this.getBudget();
+        this.range();
         
         
-        appData.showResult();
+        this.showResult();
 
     },
+
+   
 
     showResult: function(){
         budgetMonthValue.value = appData.budgetMonth;
@@ -75,7 +79,7 @@ let appData = {
         targetMonthValue.value = Math.ceil(appData.getTargetMonth());
         incomePeriodValue.value = appData.calcSavedMoney(); 
         periodSelect.addEventListener('input', () => {
-            incomePeriodValue.value = appData.calcSavedMoney()
+            incomePeriodValue.value = appData.calcSavedMoney();
         });           
     },
     addExpensesBlock: function (){
@@ -199,8 +203,7 @@ salaryAmount.addEventListener('input', () => {
     start.disabled = salaryAmount.value === '';
 });
 
-
-start.addEventListener('click', appData.start);
+start.addEventListener('click', appData.start.bind(appData));
 
 btnExpenses.addEventListener('click', appData.addExpensesBlock);
 
