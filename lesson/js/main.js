@@ -77,13 +77,18 @@ class AppData {
 
     reset = function(){
         let items = document.querySelectorAll('input[type=text]');
-    
+        let inp = document.querySelector ('input[type=range]');
         // меняем кнопку сбросить на старт
         start.style.display = 'block';
         cencel.style.display = 'none'; 
     
         btnIncome.style.display = 'block';
         btnExpenses.style.display = 'block';
+
+        depositCheck.checked = false;    
+        inp.value = 1;
+        periodAmount.innerHTML = inp.value;   
+        
     
         this.income = {};
         this.incomeMonth = 0;
