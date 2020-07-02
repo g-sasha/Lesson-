@@ -114,6 +114,7 @@ let appData = {
                 expensesItem[i].parentNode.removeChild(expensesItem[i]);
             }
         };
+        
     },
 
     showResult: function(){
