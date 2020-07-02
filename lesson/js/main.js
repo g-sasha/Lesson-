@@ -33,7 +33,7 @@ let start = document.getElementById('start'),
     salaryAmount = document.querySelector('.salary-amount'),
     incomeItem = document.querySelectorAll('.income-items'),
     periodAmount = document.querySelector('.period-amount'), 
-    cencel = document.getElementById('cancel')
+    cencel = document.getElementById('cancel');
 
 
 
@@ -79,12 +79,16 @@ AppData.prototype.start = function (){
 
 AppData.prototype.reset = function(){
     let items = document.querySelectorAll('input[type=text]');
-
+    let inp = document.querySelector ('input[type=range]');
     start.style.display = 'block';
     cencel.style.display = 'none'; 
     btnIncome.style.display = 'block';
     btnExpenses.style.display = 'block';
-
+    
+    depositCheck.checked = false;    
+    inp.value = 1;
+    periodAmount.innerHTML = inp.value;   
+    periodAmount = 1;
     this.income = {};
     this.incomeMonth = 0;
     this.addIncome = [];
@@ -110,13 +114,14 @@ AppData.prototype.reset = function(){
         if(i > 0){
             incomeItem[i].parentNode.removeChild(incomeItem[i]);
         }
-    };
+    }
 
     for( let i = 0; i < expensesItem.length; i++ ){
         if(i > 0){
             expensesItem[i].parentNode.removeChild(expensesItem[i]);
         }
-    };
+    }
+
 };
 
 AppData.prototype.showResult = function(){
@@ -285,7 +290,6 @@ console.log('appData: ', appData);
 appData.eventsListeners();
 
 
-;
 
 
 
