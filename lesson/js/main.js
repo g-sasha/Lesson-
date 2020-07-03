@@ -122,7 +122,6 @@ class AppData {
         }
     }
     showResult(){
-        const _this = this;
         budgetMonthValue.value = this.budgetMonth;
         budgetDayValue.value = Math.floor(this.budgetDay);
         expensesMonthValue.value = this.expensesMonth;
@@ -131,7 +130,7 @@ class AppData {
         targetMonthValue.value = Math.ceil(this.getTargetMonth());
         incomePeriodValue.value = this.calcSavedMoney(); 
         periodSelect.addEventListener('input', () => {
-            incomePeriodValue.value = _this.calcSavedMoney();
+            incomePeriodValue.value = this.calcSavedMoney();
         });           
     }
     addExpensesBlock(){
@@ -158,7 +157,7 @@ class AppData {
     // получаем расходы 
     getExpenses(){
         // const _this = this;
-        expensesItem.forEach((item) =>{
+        expensesItem.forEach(item =>{
             const itemExpenses = item.querySelector('.expenses-title').value;
             const cashExpenses = item.querySelector('.expenses-amount').value;
             if (itemExpenses !== '' && cashExpenses !== ''){
@@ -169,7 +168,7 @@ class AppData {
     
     // получаем доходы 
     getIncome(){
-        incomeItem.forEach((item) =>{
+        incomeItem.forEach(item =>{
             const itemIncome = item.querySelector('.income-title').value;              
             const cashIncome = item.querySelector('.income-amount').value;  
             if (itemIncome !== '' && cashIncome !== ''){
@@ -184,7 +183,7 @@ class AppData {
     // возможные расходы 
     getAddExpenses(){
         const addExpenses = additionalExpensesItem.value.split(',');
-        addExpenses.forEach((item) =>{
+        addExpenses.forEach(item =>{
             item = item.trim();
             if(item !== ''){
                 this.addExpenses.push(item);
@@ -194,7 +193,7 @@ class AppData {
     
     
     getAddIncome(){
-        additionalIncomeItem.forEach((item)=>{
+        additionalIncomeItem.forEach(item=>{
             const itemValue = item.value.trim();
             if(itemValue !== ''){
                 this.addIncome.push(itemValue);
@@ -228,7 +227,6 @@ class AppData {
      
      // расходы за месяц 
      getExpensesMonth (){
-        // const _this = this;
         for (const key in this.expenses) {
             this.expensesMonth += + this.expenses[key];
         }
