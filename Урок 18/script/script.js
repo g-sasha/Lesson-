@@ -48,27 +48,27 @@ window.addEventListener('DOMContentLoaded', function () {
   }
   countTimer('10 july 2020');
 
+  
+  const toggleMenu = (e) => {
+    const menu = document.querySelector('menu'),
+          mainHeader = document.querySelector('.main-header');
 
-
-
-
-
-  const toggleMenu = (event) => {
-
-
-    const btnMenu = document.querySelector('.menu'),
-          menu = document.querySelector('menu'),
-          closeBtn = document.querySelector('.close-btn'),
-          menuItems = menu.querySelectorAll('ul>li');
-
-
-    const hendlerMenu = () => {
+    // Кнопка Меню
+    mainHeader.addEventListener('click', (e) => {
+      if(e.target.classList.contains('active-menu')){
+        return;
+      } 
       menu.classList.toggle('active-menu');
-    };
+    });
 
-    btnMenu.addEventListener('click', hendlerMenu);
-    closeBtn.addEventListener('click', hendlerMenu);
-    menuItems.forEach((elem) => elem.addEventListener('click', hendlerMenu));
+    // крестик и пункты меню
+    menu.addEventListener('click', (e) => {
+      if(e.target.classList.contains('active-menu')){
+        return;
+      } 
+      menu.classList.toggle('active-menu');
+    });
+    
   };
   toggleMenu();
 
@@ -114,7 +114,7 @@ window.addEventListener('DOMContentLoaded', function () {
     };
   };
   togglePopUp();
-  
+
 
   const tabs = () => {
     const tabHeader = document.querySelector('.service-header'), // шапка с названиями 
