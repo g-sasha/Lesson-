@@ -73,20 +73,19 @@ window.addEventListener('DOMContentLoaded', function () {
   toggleMenu();
 
 
-
-
-
-
   const togglePopUp = () => {
     const popUp = document.querySelector('.popup'),
           popupBtn = document.querySelectorAll('.popup-btn');
 
     popupBtn.forEach((elem) => {
       elem.addEventListener('click', () => {
-        popUp.style.display = 'block';
-      });
+        if(document.documentElement.clientWidth > 768){
+          activeModal();
+        } else {
+          popUp.style.display = 'block';
+        }
+      });      
     });
-
 
     popUp.addEventListener('click', (event) => {
       let target = event.target;
@@ -99,22 +98,23 @@ window.addEventListener('DOMContentLoaded', function () {
         }
       }
     });
+    
+      let popupContent = document.querySelector('.popup-content');
+      let activeModal = () => {
+      popUp.style.display = 'block';
+      popupContent.style.opacity = 0;
+      let  count = 0;
+      const  animateMenu = setInterval(()=>{
+        if(count < 1){
+          popupContent.style.opacity = count +=0.1;
+        } else {
+          clearInterval(animateMenu);
+        }
+      },50); 
+    };
   };
   togglePopUp();
-
-
-  let popupContent = document.querySelector('.popup-content'),
-    count = 0,
-    width = document.documentElement.clientWidth;
-  let activeModal = () => {
-    count++;
-    popupContent.style.left = count + 'px';
-    if (count < 535 && width > 768) {
-      setTimeout(activeModal, 1);
-    }
-  };
-  activeModal();
-
+  
 
   const tabs = () => {
     const tabHeader = document.querySelector('.service-header'), // шапка с названиями 
