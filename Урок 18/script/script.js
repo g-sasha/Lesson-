@@ -35,16 +35,17 @@ window.addEventListener('DOMContentLoaded', function () {
       timerHours.textContent = timer.hours,
         timerMinutes.textContent = timer.minutes,
         timerSeconds.textContent = timer.seconds
-
+      let tim
       if (timer.timerRemainig > 0) {
-        setInterval(updateClock, 1000);
+        tim = setInterval(updateClock, 1000);
+        clearInterval(tim);
       } else {
         timerHours.textContent = '00', timerHours.style.color = 'red';
         timerMinutes.textContent = '00', timerMinutes.style.color = 'red';
         timerSeconds.textContent = '00', timerSeconds.style.color = 'red';
       }
     }
-    updateClock();
+    setInterval(updateClock, 1000);
   }
   countTimer('10 july 2020');
 
@@ -69,13 +70,7 @@ window.addEventListener('DOMContentLoaded', function () {
     });
     
   };
-  toggleMenu();
-
-  
-
-
-
-
+  toggleMenu(); 
 
   const togglePopUp = () => {
     const popUp = document.querySelector('.popup'),
@@ -232,7 +227,7 @@ window.addEventListener('DOMContentLoaded', function () {
         startSlide();
       }
     })
-    startSlide();
+    startSlide(1000);
   };
   slider();
 
