@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', function () {
       let timer = getTimeRemaining();
       timerHours.textContent = timer.hours,
         timerMinutes.textContent = timer.minutes,
-        timerSeconds.textContent = timer.seconds;
+        timerSeconds.textContent = timer.seconds
 
       if (timer.timerRemainig > 0) {
         setInterval(updateClock, 1000);
@@ -147,5 +147,93 @@ window.addEventListener('DOMContentLoaded', function () {
     });
   };
   tabs();
+
+
+  const slider = () => {
+    const slide = document.querySelectorAll('.portfolio-item'), //карточки слайдов 
+    btn = document.querySelectorAll('.portfolio-btn'), // кнопка
+    dot = document.querySelectorAll('.dot'), // точки
+    slider = document.querySelector('.portfolio-content'); // родитель
+
+    let currenSlide = 0,
+    interval;
+
+    const prevSlide = (elem, index, strClass) => {
+      elem[index].classList.remove(strClass);
+    };
+    const nextSlide = (elem, index, strClass) => {
+      elem[index].classList.add(strClass);
+    };
+
+    const autoPlaySlide = () => {
+
+      prevSlide(slide, currenSlide, 'portfolio-item-active');
+      prevSlide(dot, currenSlide, 'dot-active');
+      currenSlide++;
+      if(currenSlide >= slide.length){
+        currenSlide = 0;
+      }
+      nextSlide(slide, currenSlide, 'portfolio-item-active');
+      nextSlide(dot, currenSlide, 'dot-active');
+    };
+
+    const startSlide = (time = 1000) => {
+      interval = setInterval(autoPlaySlide, time);
+    };
+
+    const stopSlide = () => {
+      clearInterval(interval);
+    };
+
+    slider.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      let target = event.target;
+
+      if(!target.matches('.portfolio-btn, .dot')){
+        return;
+      }
+
+      prevSlide(slide, currenSlide, 'portfolio-item-active');
+      prevSlide(dot, currenSlide, 'dot-active');
+
+      if(target.matches('#arrow-right')){
+        currenSlide++;
+      } else if (target.matches('#arrow-left')){
+        currenSlide--;
+      } else if(target.matches('.dot')){
+        dot.forEach((elem, index) => {
+          if(elem === target){
+            currenSlide = index;
+          }
+        });
+      }
+      if(currenSlide >= slide.length){
+        currenSlide = 0;
+      }
+
+      if(currenSlide < 0){
+        currenSlide = slide.length -1;
+      }
+      nextSlide(slide, currenSlide, 'portfolio-item-active');
+      nextSlide(dot, currenSlide, 'dot-active');      
+    });
+
+
+    slider.addEventListener('mouseover', (event) => {
+      if(event.target.matches('.portfolio-btn')
+       || event.target.matches('.dot')){
+        stopSlide();
+      }
+    });
+    slider.addEventListener('mouseout', (event) => {
+      if(event.target.matches('.portfolio-btn') 
+      || event.target.matches('.dot')){
+        startSlide();
+      }
+    })
+    startSlide();
+  };
+  slider();
 
 });
