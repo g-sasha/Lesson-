@@ -84,9 +84,13 @@ window.addEventListener('DOMContentLoaded', function(){
   let activeModal = () => {
     count++;
     popupContent.style.left = count  + 'px'; 
+    let setTime 
     if(count < 535 && width > 768){
-      setTimeout(activeModal, 1);
-    } 
+      setTime = setTimeout(activeModal, 1);  
+    } else {
+      clearTimeout(setTime);
+      
+    }
   };
   activeModal();
 });
