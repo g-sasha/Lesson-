@@ -34,21 +34,21 @@ window.addEventListener('DOMContentLoaded', function () {
       let timer = getTimeRemaining();
       timerHours.textContent = timer.hours,
         timerMinutes.textContent = timer.minutes,
-        timerSeconds.textContent = timer.seconds;
-
+        timerSeconds.textContent = timer.seconds
+      let tim
       if (timer.timerRemainig > 0) {
-        setInterval(updateClock, 1000);
+        tim = setInterval(updateClock, 1000);
+        clearInterval(tim);
       } else {
         timerHours.textContent = '00', timerHours.style.color = 'red';
         timerMinutes.textContent = '00', timerMinutes.style.color = 'red';
         timerSeconds.textContent = '00', timerSeconds.style.color = 'red';
       }
     }
-    updateClock();
+    setInterval(updateClock, 1000);
   }
-  countTimer('13 july 2020');
+  countTimer('10 july 2020');
 
-  
   const toggleMenu = (e) => {
     const menu = document.querySelector('menu'),
           mainHeader = document.querySelector('.main-header');
@@ -70,8 +70,7 @@ window.addEventListener('DOMContentLoaded', function () {
     });
     
   };
-  toggleMenu();
-
+  toggleMenu(); 
 
   const togglePopUp = () => {
     const popUp = document.querySelector('.popup'),
@@ -116,6 +115,19 @@ window.addEventListener('DOMContentLoaded', function () {
   togglePopUp();
 
 
+  let popupContent = document.querySelector('.popup-content'),
+    count = 0,
+    width = document.documentElement.clientWidth;
+  let activeModal = () => {
+    count++;
+    popupContent.style.left = count + 'px';
+    if (count < 535 && width > 768) {
+      setTimeout(activeModal, 1);
+    }
+  };
+  activeModal();
+
+
   const tabs = () => {
     const tabHeader = document.querySelector('.service-header'), // шапка с названиями 
           tab = tabHeader.querySelectorAll('.service-header-tab'), // названия
@@ -151,10 +163,17 @@ window.addEventListener('DOMContentLoaded', function () {
 
   const slider = () => {
     const slide = document.querySelectorAll('.portfolio-item'), //карточки слайдов 
-    btn = document.querySelectorAll('.portfolio-btn'), // кнопка
-    dot = document.querySelectorAll('.dot'), // точки
+    btn = document.querySelectorAll('.portfolio-btn'),
+    portfolioDots = document.querySelector('.portfolio-dots'); // кнопка
+    
+    for(let i = 0; i < slide.length; i++){
+      let  newDot = document.createElement('li');
+      newDot.classList.add('dot');
+      portfolioDots.append(newDot);
+    }
+    const dot = document.querySelectorAll('.dot'), // точки
     slider = document.querySelector('.portfolio-content'); // родитель
-
+    
     let currenSlide = 0,
     interval;
 
@@ -226,15 +245,13 @@ window.addEventListener('DOMContentLoaded', function () {
         stopSlide();
       }
     });
-    
     slider.addEventListener('mouseout', (event) => {
       if(event.target.matches('.portfolio-btn') 
       || event.target.matches('.dot')){
         startSlide();
       }
     })
-    startSlide();
+    startSlide(1000);
   };
   slider();
-
 });
