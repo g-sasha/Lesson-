@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', function () {
       let timer = getTimeRemaining();
       timerHours.textContent = timer.hours,
         timerMinutes.textContent = timer.minutes,
-        timerSeconds.textContent = timer.seconds
+        timerSeconds.textContent = timer.seconds;
 
       if (timer.timerRemainig > 0) {
         setInterval(updateClock, 1000);
@@ -46,8 +46,9 @@ window.addEventListener('DOMContentLoaded', function () {
     }
     updateClock();
   }
-  countTimer('10 july 2020');
+  countTimer('13 july 2020');
 
+  
   const toggleMenu = (e) => {
     const menu = document.querySelector('menu'),
           mainHeader = document.querySelector('.main-header');
@@ -71,11 +72,6 @@ window.addEventListener('DOMContentLoaded', function () {
   };
   toggleMenu();
 
-  
-
-
-
-
 
   const togglePopUp = () => {
     const popUp = document.querySelector('.popup'),
@@ -83,10 +79,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
     popupBtn.forEach((elem) => {
       elem.addEventListener('click', () => {
-        popUp.style.display = 'block';
-      });
+        if(document.documentElement.clientWidth > 768){
+          activeModal();
+        } else {
+          popUp.style.display = 'block';
+        }
+      });      
     });
-
 
     popUp.addEventListener('click', (event) => {
       let target = event.target;
@@ -99,21 +98,22 @@ window.addEventListener('DOMContentLoaded', function () {
         }
       }
     });
+    
+      let popupContent = document.querySelector('.popup-content');
+      let activeModal = () => {
+      popUp.style.display = 'block';
+      popupContent.style.opacity = 0;
+      let  count = 0;
+      const  animateMenu = setInterval(()=>{
+        if(count < 1){
+          popupContent.style.opacity = count +=0.1;
+        } else {
+          clearInterval(animateMenu);
+        }
+      },50); 
+    };
   };
   togglePopUp();
-
-
-  let popupContent = document.querySelector('.popup-content'),
-    count = 0,
-    width = document.documentElement.clientWidth;
-  let activeModal = () => {
-    count++;
-    popupContent.style.left = count + 'px';
-    if (count < 535 && width > 768) {
-      setTimeout(activeModal, 1);
-    }
-  };
-  activeModal();
 
 
   const tabs = () => {
@@ -233,6 +233,8 @@ window.addEventListener('DOMContentLoaded', function () {
       }
     })
     startSlide();
+
+    
   };
   slider();
 
